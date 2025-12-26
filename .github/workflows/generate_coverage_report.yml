@@ -1,0 +1,33 @@
+name: Generate NIFTY 500 Data Coverage Report
+
+on:
+  workflow_dispatch:
+
+jobs:
+  coverage-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Generate coverage report
+        run: python scripts/generate_coverage_report.py
+
+      - name: Commit & push report
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add reports/nifty500_data_coverage.csv
+          git commit -m "Add NIFTY 500 data coverage report" || echo "No changes"
+          git push
