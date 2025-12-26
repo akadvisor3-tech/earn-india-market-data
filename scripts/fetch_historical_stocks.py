@@ -19,20 +19,22 @@ SLEEP_BETWEEN = 2
 
 def fetch_symbol(sym):
     try:
-        ticker = yf.Ticker(sym)
+        yahoo_sym = f"{sym}.NS"
+
+        ticker = yf.Ticker(yahoo_sym)
         df = ticker.history(period="max", auto_adjust=False)
 
         if df.empty:
-            print(f"⚠️ No data: {sym}")
+            print(f"⚠️ No data: {yahoo_sym}")
             return
 
         df.reset_index(inplace=True)
         df.rename(columns=str.lower, inplace=True)
 
-        out_file = os.path.join(OUT_DIR, f"{sym.replace('.', '_')}.csv")
-        df.to_csv(out_file, index=False)
+        out = os.path.join(OUT_DIR, f"{sym}.csv")
+        df.to_csv(out, index=False)
 
-        print(f"✅ Saved {sym} ({len(df)} rows)")
+        print(f"✅ Saved {yahoo_sym} ({len(df)} rows)")
 
     except Exception as e:
         print(f"❌ Error {sym}: {e}")
