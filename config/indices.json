@@ -1,0 +1,26 @@
+{
+  "NIFTY50": {
+    "yahoo": "^NSEI",
+    "exchange": "NSE"
+  },
+  "BANKNIFTY": {
+    "yahoo": "^NSEBANK",
+    "exchange": "NSE"
+  },
+  "FINNIFTY": {
+    "yahoo": "NIFTY_FIN_SERVICE.NS",
+    "exchange": "NSE"
+  },
+  "MIDCAP100": {
+    "yahoo": "NIFTY_MIDCAP_100.NS",
+    "exchange": "NSE"
+  },
+  "SENSEX": {
+    "yahoo": "^BSESN",
+    "exchange": "BSE"
+  },
+  "BANKEX": {
+    "yahoo": "BSE-BANK.BO",
+    "exchange": "BSE"
+  }
+}
