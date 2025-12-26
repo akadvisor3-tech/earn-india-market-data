@@ -1,0 +1,37 @@
+name: Build Weekly & Monthly Candles
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs every day at 5:15 PM IST
+    # IST = UTC + 5:30 → 11:45 UTC
+    - cron: "45 11 * * *"
+
+jobs:
+  build-candles:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: Build weekly & monthly candles
+        run: python scripts/build_weekly_monthly_candles.py
+
+      - name: Commit & push derived data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/**/weekly data/**/monthly
+          git commit -m "Update weekly & monthly candles" || echo "No changes to commit"
+          git push
