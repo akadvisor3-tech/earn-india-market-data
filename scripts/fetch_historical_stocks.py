@@ -10,7 +10,7 @@ OUT_DIR = "data/stocks/NIFTY500"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 with open(CONFIG_PATH, "r") as f:
-    symbols = json.load(f)
+    symbols = list(json.load(f).keys())
 
 print(f"📦 Total symbols: {len(symbols)}")
 
