@@ -1,0 +1,32 @@
+name: Fetch NIFTY 500 Historical Stocks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-stocks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas
+
+      - name: Run historical fetch
+        run: python scripts/fetch_historical_stocks.py
+
+      - name: Commit & push CSV data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/stocks/NIFTY500
+          git commit -m "Add NIFTY 500 historical stock data" || echo "No changes"
+          git push
