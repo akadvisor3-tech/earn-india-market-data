@@ -316,7 +316,7 @@ stocks_monthly.to_csv(
     BOT_SNAPSHOT_DIR / "stocks_monthly.csv", index=False
 )
 
-    print("✅ Snapshot CSVs updated successfully")
+print("✅ Snapshot CSVs updated successfully")
 
 
 if __name__ == "__main__":
