@@ -10,7 +10,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 RAW_DATA_DIR = BASE_DIR / "data"
-BOT_SNAPSHOT_DIR = BASE_DIR / "../earnindia-ai-bot/data_precalc"
+BOT_SNAPSHOT_DIR = BASE_DIR / "precalc"
 
 INDEX_LIST = ["NIFTY50", "BANKNIFTY", "FINNIFTY", "MIDCAP100", "SENSEX"]
 STOCK_DIR = RAW_DATA_DIR / "stocks" / "NIFTY500"
