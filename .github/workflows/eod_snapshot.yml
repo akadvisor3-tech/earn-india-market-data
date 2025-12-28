@@ -29,8 +29,9 @@ jobs:
 
       - name: Commit & push snapshots
         run: |
+          cd botrepo
           git config user.name "earnindia-bot"
           git config user.email "bot@earnindia.ai"
-          git add ../earnindia-ai-bot/data_precalc/*.csv
+          git add data_precalc/*.csv
           git commit -m "EOD snapshot update" || echo "No changes"
           git push
