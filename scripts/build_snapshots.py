@@ -184,7 +184,6 @@ def build_snapshot(df, symbol):
     row["bb_position"] = (last["close"] - last["bb_middle"]) / (last["bb_upper"] - last["bb_middle"])
     row["mean_reversion_flag"] = mean_reversion_flag(row)
     row["volatility_flag"] = volatility_flag(row)
-    row["confidence_score"] = confidence_score(row)
     row["data_quality_flag"] = data_quality_flag(df)
 
     return row
@@ -232,27 +231,90 @@ def build_stocks_snapshot(timeframe):
 def main():
     BOT_SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Indices
-    build_indices_snapshot("daily").to_csv(
-        BOT_SNAPSHOT_DIR / "indices_daily.csv", index=False
-    )
-    build_indices_snapshot("weekly").to_csv(
-        BOT_SNAPSHOT_DIR / "indices_weekly.csv", index=False
-    )
-    build_indices_snapshot("monthly").to_csv(
-        BOT_SNAPSHOT_DIR / "indices_monthly.csv", index=False
-    )
+# ------------------------
+# Indices (build first)
+# ------------------------
+indices_daily = build_indices_snapshot("daily")
+indices_weekly = build_indices_snapshot("weekly")
+indices_monthly = build_indices_snapshot("monthly")
 
-    # Stocks
-    build_stocks_snapshot("daily").to_csv(
-        BOT_SNAPSHOT_DIR / "stocks_daily.csv", index=False
-    )
-    build_stocks_snapshot("weekly").to_csv(
-        BOT_SNAPSHOT_DIR / "stocks_weekly.csv", index=False
-    )
-    build_stocks_snapshot("monthly").to_csv(
-        BOT_SNAPSHOT_DIR / "stocks_monthly.csv", index=False
-    )
+# ------------------------
+# APPLY MULTI-TIMEFRAME CONFIDENCE
+# ------------------------
+weekly_map = indices_weekly.set_index("symbol")
+monthly_map = indices_monthly.set_index("symbol")
+
+confidence_scores = []
+
+for _, daily_row in indices_daily.iterrows():
+    symbol = daily_row["symbol"]
+
+    if symbol in weekly_map.index and symbol in monthly_map.index:
+        weekly_row = weekly_map.loc[symbol]
+        monthly_row = monthly_map.loc[symbol]
+        score = confidence_score(daily_row, weekly_row, monthly_row)
+    else:
+        score = 0  # safety fallback
+
+    confidence_scores.append(score)
+
+indices_daily["confidence_score"] = confidence_scores
+
+# ------------------------
+# SAVE INDICES CSVs
+# ------------------------
+indices_daily.to_csv(
+    BOT_SNAPSHOT_DIR / "indices_daily.csv", index=False
+)
+indices_weekly.to_csv(
+    BOT_SNAPSHOT_DIR / "indices_weekly.csv", index=False
+)
+indices_monthly.to_csv(
+    BOT_SNAPSHOT_DIR / "indices_monthly.csv", index=False
+)
+
+
+# ------------------------
+# Stocks (build first)
+# ------------------------
+stocks_daily = build_stocks_snapshot("daily")
+stocks_weekly = build_stocks_snapshot("weekly")
+stocks_monthly = build_stocks_snapshot("monthly")
+
+# ------------------------
+# APPLY MULTI-TIMEFRAME CONFIDENCE (STOCKS)
+# ------------------------
+weekly_map = stocks_weekly.set_index("symbol")
+monthly_map = stocks_monthly.set_index("symbol")
+
+confidence_scores = []
+
+for _, daily_row in stocks_daily.iterrows():
+    symbol = daily_row["symbol"]
+
+    if symbol in weekly_map.index and symbol in monthly_map.index:
+        weekly_row = weekly_map.loc[symbol]
+        monthly_row = monthly_map.loc[symbol]
+        score = confidence_score(daily_row, weekly_row, monthly_row)
+    else:
+        score = 0  # safety fallback
+
+    confidence_scores.append(score)
+
+stocks_daily["confidence_score"] = confidence_scores
+
+# ------------------------
+# SAVE STOCK CSVs
+# ------------------------
+stocks_daily.to_csv(
+    BOT_SNAPSHOT_DIR / "stocks_daily.csv", index=False
+)
+stocks_weekly.to_csv(
+    BOT_SNAPSHOT_DIR / "stocks_weekly.csv", index=False
+)
+stocks_monthly.to_csv(
+    BOT_SNAPSHOT_DIR / "stocks_monthly.csv", index=False
+)
 
     print("✅ Snapshot CSVs updated successfully")
 
