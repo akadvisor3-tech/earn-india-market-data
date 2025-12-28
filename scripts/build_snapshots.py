@@ -139,7 +139,10 @@ def build_indices_snapshot(timeframe):
     rows = []
 
     for symbol in INDEX_LIST:
-        file_path = RAW_DATA_DIR / "indices" / timeframe / f"{symbol}.csv"
+        if timeframe == "daily":
+            file_path = RAW_DATA_DIR / "indices" / f"{symbol}.csv"
+        else:
+            file_path = RAW_DATA_DIR / "indices" / timeframe / f"{symbol}.csv"
 
         if not file_path.exists():
             continue
