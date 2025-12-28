@@ -64,23 +64,37 @@ def volatility_flag(row):
 # Confidence score
 # ------------------------
 def confidence_score(row):
-    score = 0
-    weight = 0
+    score = 100  # start from full confidence
 
-    def add(val, w):
-        nonlocal score, weight
-        if pd.notna(val):
-            score += val * w
-            weight += w
+    # 1️⃣ Trend alignment
+    if row["trend"] == "Bullish":
+        score -= 0
+    elif row["trend"] == "Sideways":
+        score -= 20
+    else:  # Bearish
+        score -= 10
 
-    add(1 if row["trend"] == "Bullish" else -1, 25)
-    add(-abs(row["sma5_dist_pct"]), 15)
-    add(-abs(row["ema20_dist_pct"]), 15)
-    add(-abs(row["vwap_dist_pct"]), 10)
-    add(1 if not row["mean_reversion_flag"] else -1, 10)
-    add(1 if not row["volatility_flag"] else -1, 10)
+    # 2️⃣ Distance penalties (overstretch control)
+    score -= min(abs(row["sma5_dist_pct"]) * 5, 20)
+    score -= min(abs(row["ema20_dist_pct"]) * 4, 15)
+    score -= min(abs(row["vwap_dist_pct"]) * 3, 15)
 
-    return round((score / weight) * 100, 1) if weight else 0
+    # 3️⃣ Mean reversion risk
+    if row["mean_reversion_flag"]:
+        score -= 15
+
+    # 4️⃣ Volatility risk
+    if row["volatility_flag"]:
+        score -= 10
+
+    # 5️⃣ Data quality adjustment
+    if row["data_quality_flag"] == "PARTIAL":
+        score -= 10
+    elif row["data_quality_flag"] == "LIMITED":
+        score -= 25
+
+    # Clamp between 0 and 100
+    return max(0, min(100, int(score)))
 
 # ------------------------
 # Data quality
