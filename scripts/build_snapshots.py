@@ -64,37 +64,55 @@ def volatility_flag(row):
 # Confidence score
 # ------------------------
 def confidence_score(row):
-    score = 100  # start from full confidence
+    """
+    Direction-neutral confidence score.
+    Measures strength, alignment & stability — NOT buy/sell direction.
+    Output strictly between 0 and 100.
+    """
 
-    # 1️⃣ Trend alignment
-    if row["trend"] == "Bullish":
-        score -= 0
-    elif row["trend"] == "Sideways":
-        score -= 20
-    else:  # Bearish
-        score -= 10
+    score = 50  # Neutral base
+    penalties = 0
 
-    # 2️⃣ Distance penalties (overstretch control)
-    score -= min(abs(row["sma5_dist_pct"]) * 5, 20)
-    score -= min(abs(row["ema20_dist_pct"]) * 4, 15)
-    score -= min(abs(row["vwap_dist_pct"]) * 3, 15)
+    # ------------------------
+    # 1️⃣ Trend clarity (Bullish OR Bearish = opportunity)
+    # ------------------------
+    if row["trend"] in ["Bullish", "Bearish"]:
+        score += 25
 
-    # 3️⃣ Mean reversion risk
-    if row["mean_reversion_flag"]:
-        score -= 15
+    # ------------------------
+    # 2️⃣ Mean reversion risk (overextension)
+    # ------------------------
+    penalties += abs(row.get("sma5_dist_pct", 0)) * 2
+    penalties += abs(row.get("ema20_dist_pct", 0)) * 1.5
+    penalties += abs(row.get("vwap_dist_pct", 0)) * 1.2
 
-    # 4️⃣ Volatility risk
-    if row["volatility_flag"]:
-        score -= 10
+    # ------------------------
+    # 3️⃣ Volatility / fake breakout risk
+    # ------------------------
+    if row.get("volatility_flag"):
+        penalties += 10
 
-    # 5️⃣ Data quality adjustment
-    if row["data_quality_flag"] == "PARTIAL":
-        score -= 10
-    elif row["data_quality_flag"] == "LIMITED":
-        score -= 25
+    # ------------------------
+    # 4️⃣ Apply penalties
+    # ------------------------
+    score -= penalties
 
-    # Clamp between 0 and 100
-    return max(0, min(100, int(score)))
+    # ------------------------
+    # 5️⃣ Data quality scaling
+    # ------------------------
+    quality = row.get("data_quality_flag", "FULL")
+
+    if quality == "PARTIAL":
+        score *= 0.85
+    elif quality == "LIMITED":
+        score *= 0.70
+
+    # ------------------------
+    # 6️⃣ Clamp safely
+    # ------------------------
+    score = max(0, min(100, round(score)))
+
+    return score
 
 # ------------------------
 # Data quality
