@@ -2,7 +2,8 @@ name: EOD Snapshot Builder
 
 on:
   schedule:
-    - cron: "30 18 * * *" # 12:00 AM IST
+    # 12:00 AM IST = 18:30 UTC
+    - cron: "30 18 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,19 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the Market Data Repo (where this script lives)
       - name: Checkout market data repo
         uses: actions/checkout@v4
-        with:
-          path: earn-india-market-data
-
-      # 2. Checkout the Bot Repo (where the results will go)
-      - name: Checkout bot repo
-        uses: actions/checkout@v4
-        with:
-          repository: your-username/earnindia-ai-bot # <-- Update with your actual username/repo
-          token: ${{ secrets.BOT_REPO_PAT }}
-          path: earnindia-ai-bot
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -33,19 +23,14 @@ jobs:
         run: |
           pip install pandas numpy
 
-      # 3. Run the script 
-      # Note: We use the folder path because we checked out into subdirectories
       - name: Run snapshot builder
         run: |
-          cd earn-india-market-data
           python scripts/build_snapshots.py
 
-      # 4. Push changes to the Bot Repo
-      - name: Commit & push snapshots to Bot Repo
+      - name: Commit & push snapshots
         run: |
-          cd earnindia-ai-bot
           git config user.name "earnindia-bot"
           git config user.email "bot@earnindia.ai"
-          git add data_precalc/*.csv
-          git commit -m "EOD snapshot update: $(date +'%Y-%m-%d')" || echo "No changes"
+          git add ../earnindia-ai-bot/data_precalc/*.csv
+          git commit -m "EOD snapshot update" || echo "No changes"
           git push
