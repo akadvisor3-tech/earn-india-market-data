@@ -63,54 +63,80 @@ def volatility_flag(row):
 # ------------------------
 # Confidence score
 # ------------------------
-def confidence_score(row):
+def calculate_aligned_confidence(daily_row, weekly_row, monthly_row):
     """
     Direction-neutral confidence score.
-    Measures strength, alignment & stability — NOT buy/sell direction.
-    Output strictly between 0 and 100.
+    Measures strength, stability, and multi-timeframe alignment.
+    Works equally well for BUY and SELL setups.
+    Output: integer between 0 and 100.
     """
 
-    score = 50  # Neutral base
-    penalties = 0
+    # -------------------------
+    # 0️⃣ Base score (neutral)
+    # -------------------------
+    score = 60
 
-    # ------------------------
-    # 1️⃣ Trend clarity (Bullish OR Bearish = opportunity)
-    # ------------------------
-    if row["trend"] in ["Bullish", "Bearish"]:
-        score += 25
+    # -------------------------
+    # 1️⃣ Daily Trend Clarity
+    # -------------------------
+    if daily_row["trend"] in ("Bullish", "Bearish"):
+        score += 20
+    else:
+        score -= 25  # Sideways markets are low quality
 
-    # ------------------------
-    # 2️⃣ Mean reversion risk (overextension)
-    # ------------------------
-    penalties += abs(row.get("sma5_dist_pct", 0)) * 2
-    penalties += abs(row.get("ema20_dist_pct", 0)) * 1.5
-    penalties += abs(row.get("vwap_dist_pct", 0)) * 1.2
+    # -------------------------
+    # 2️⃣ Overextension penalties (Daily)
+    # -------------------------
+    score -= min(abs(daily_row.get("sma5_dist_pct", 0)) * 5, 20)
+    score -= min(abs(daily_row.get("ema20_dist_pct", 0)) * 4, 15)
+    score -= min(abs(daily_row.get("vwap_dist_pct", 0)) * 3, 15)
 
-    # ------------------------
-    # 3️⃣ Volatility / fake breakout risk
-    # ------------------------
-    if row.get("volatility_flag"):
-        penalties += 10
+    # -------------------------
+    # 3️⃣ Mean reversion & volatility risk
+    # -------------------------
+    if daily_row.get("mean_reversion_flag"):
+        score -= 15
 
-    # ------------------------
-    # 4️⃣ Apply penalties
-    # ------------------------
-    score -= penalties
+    if daily_row.get("volatility_flag"):
+        score -= 10
 
-    # ------------------------
-    # 5️⃣ Data quality scaling
-    # ------------------------
-    quality = row.get("data_quality_flag", "FULL")
+    # -------------------------
+    # 4️⃣ Multi-timeframe alignment (CORE LOGIC)
+    # -------------------------
+    daily_trend = daily_row["trend"]
+    weekly_trend = weekly_row["trend"]
+    monthly_trend = monthly_row["trend"]
+
+    # ✅ Perfect alignment (Bull-Bull-Bull OR Bear-Bear-Bear)
+    if (
+        daily_trend == weekly_trend == monthly_trend
+        and daily_trend != "Sideways"
+    ):
+        score += 10
+
+    # ❌ Major conflict (Daily vs Monthly)
+    elif daily_trend != monthly_trend and monthly_trend != "Sideways":
+        score -= 30
+
+    # ⚠️ Partial conflict (Daily vs Weekly)
+    elif daily_trend != weekly_trend and weekly_trend != "Sideways":
+        score -= 15
+
+    # -------------------------
+    # 5️⃣ Data quality adjustment (Daily data)
+    # -------------------------
+    quality = daily_row.get("data_quality_flag", "FULL")
 
     if quality == "PARTIAL":
-        score *= 0.85
+        score -= 10
     elif quality == "LIMITED":
-        score *= 0.70
+        score -= 25
 
-    # ------------------------
+    # -------------------------
     # 6️⃣ Clamp safely
-    # ------------------------
-    score = max(0, min(100, round(score)))
+    # -------------------------
+    score = int(round(score))
+    score = max(0, min(100, score))
 
     return score
 
