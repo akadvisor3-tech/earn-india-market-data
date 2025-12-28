@@ -63,7 +63,7 @@ def volatility_flag(row):
 # ------------------------
 # Confidence score
 # ------------------------
-def calculate_aligned_confidence(daily_row, weekly_row, monthly_row):
+def confidence_score(daily_row, weekly_row, monthly_row):
     """
     Direction-neutral confidence score.
     Measures strength, stability, and multi-timeframe alignment.
