@@ -2,39 +2,50 @@ name: EOD Snapshot Builder
 
 on:
   schedule:
-    - cron: "30 18 * * *"   # 12:00 AM IST
+    - cron: "30 18 * * *" # 12:00 AM IST
   workflow_dispatch:
 
 jobs:
-  build:
+  build-snapshots:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout market data repo
-      uses: actions/checkout@v4
+      # 1. Checkout the Market Data Repo (where this script lives)
+      - name: Checkout market data repo
+        uses: actions/checkout@v4
+        with:
+          path: earn-india-market-data
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
+      # 2. Checkout the Bot Repo (where the results will go)
+      - name: Checkout bot repo
+        uses: actions/checkout@v4
+        with:
+          repository: your-username/earnindia-ai-bot # <-- Update with your actual username/repo
+          token: ${{ secrets.BOT_REPO_PAT }}
+          path: earnindia-ai-bot
 
-    - name: Install dependencies
-      run: |
-        pip install pandas numpy
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Build indicator snapshots
-      run: |
-        python scripts/build_snapshots.py
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy
 
-    - name: Push snapshots to earnindia-ai-bot
-      env:
-        BOT_REPO_TOKEN: ${{ secrets.BOT_REPO_TOKEN }}
-      run: |
-        git clone https://$BOT_REPO_TOKEN@github.com/akadvisor3-tech/earnindia-ai-bot.git botrepo
-        cp precalc/*.csv botrepo/data_precalc/
-        cd botrepo
-        git config user.name "EOD Bot"
-        git config user.email "bot@github.com"
-        git add data_precalc/
-        git commit -m "EOD indicator snapshot update" || echo "No changes"
-        git push
+      # 3. Run the script 
+      # Note: We use the folder path because we checked out into subdirectories
+      - name: Run snapshot builder
+        run: |
+          cd earn-india-market-data
+          python scripts/build_snapshots.py
+
+      # 4. Push changes to the Bot Repo
+      - name: Commit & push snapshots to Bot Repo
+        run: |
+          cd earnindia-ai-bot
+          git config user.name "earnindia-bot"
+          git config user.email "bot@earnindia.ai"
+          git add data_precalc/*.csv
+          git commit -m "EOD snapshot update: $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
