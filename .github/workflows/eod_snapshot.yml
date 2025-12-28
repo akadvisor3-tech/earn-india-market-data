@@ -28,10 +28,16 @@ jobs:
           python scripts/build_snapshots.py
 
       - name: Commit & push snapshots
+        env:
+          BOT_REPO_TOKEN: ${{ secrets.BOT_REPO_TOKEN }}
         run: |
+          git clone https://x-access-token:${BOT_REPO_TOKEN}@github.com/akadvisor3-tech/earnindia-ai-bot.git botrepo
+
+          cp precalc/*.csv botrepo/data_precalc/
+
           cd botrepo
           git config user.name "earnindia-bot"
           git config user.email "bot@earnindia.ai"
-          git add data_precalc/*.csv
+          git add data_precalc/
           git commit -m "EOD snapshot update" || echo "No changes"
           git push
