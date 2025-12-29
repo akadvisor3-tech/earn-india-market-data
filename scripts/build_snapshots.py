@@ -44,6 +44,21 @@ def vwap(df):
     tp = (df["high"] + df["low"] + df["close"]) / 3
     return (tp * df["volume"]).cumsum() / df["volume"].cumsum()
 
+def pivot_levels(high, low, close):
+    pp = (high + low + close) / 3
+    r1 = (2 * pp) - low
+    s1 = (2 * pp) - high
+    r2 = pp + (high - low)
+    s2 = pp - (high - low)
+
+    return {
+        "pivot_pp": round(pp, 2),
+        "pivot_r1": round(r1, 2),
+        "pivot_r2": round(r2, 2),
+        "pivot_s1": round(s1, 2),
+        "pivot_s2": round(s2, 2),
+    }
+
 # ------------------------
 # Trend & flags
 # ------------------------
@@ -176,12 +191,32 @@ def build_snapshot(df, symbol):
     last = df.iloc[-1]
     row = last.to_dict()
 
+# ------------------------
+# Pivot levels (EOD)
+# ------------------------
+    pivots = pivot_levels(
+        last["high"],
+        last["low"],
+        last["close"]
+    )
+    row.update(pivots)
+
+# ------------------------
+# Meta & indicators
+# ------------------------
     row["symbol"] = symbol
     row["trend"] = detect_trend(last)
     row["trend_alignment"] = row["trend"]
+
     row["sma5_dist_pct"] = (last["close"] - last["sma5"]) / last["sma5"] * 100
     row["ema20_dist_pct"] = (last["close"] - last["ema20"]) / last["ema20"] * 100
-    row["bb_position"] = (last["close"] - last["bb_middle"]) / (last["bb_upper"] - last["bb_middle"])
+    row["bb_position"] = (
+        (last["close"] - last["bb_middle"])
+        / (last["bb_upper"] - last["bb_middle"])
+        if (last["bb_upper"] - last["bb_middle"]) != 0
+        else 0
+    )
+
     row["mean_reversion_flag"] = mean_reversion_flag(row)
     row["volatility_flag"] = volatility_flag(row)
     row["data_quality_flag"] = data_quality_flag(df)
