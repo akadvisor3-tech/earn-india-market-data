@@ -1047,6 +1047,10 @@
     "yahoo": "JMFINANCIL.NS",
     "sector": "Financial Services"
   },
+  "JSWCEMENT": {
+    "yahoo": "JSWCEMENT.NS",
+    "sector": "Construction Materials"
+  },
   "JSWENERGY": {
     "yahoo": "JSWENERGY.NS",
     "sector": "Power"
@@ -1606,10 +1610,6 @@
   "SJVN": {
     "yahoo": "SJVN.NS",
     "sector": "Power"
-  },
-  "SKFINDIA": {
-    "yahoo": "SKFINDIA.NS",
-    "sector": "Automobile and Auto Components"
   },
   "SRF": {
     "yahoo": "SRF.NS",
