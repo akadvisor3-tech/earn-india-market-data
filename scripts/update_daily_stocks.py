@@ -4,18 +4,21 @@ import pandas as pd
 import yfinance as yf
 from datetime import datetime, timedelta
 
+# ------------------------
+# CONFIG
+# ------------------------
 CONFIG_PATH = "config/stocks_nifty500.json"
 DATA_DIR = "data/stocks/NIFTY500"
 
 with open(CONFIG_PATH, "r") as f:
     symbols = json.load(f)
 
+# ------------------------
+# UPDATE FUNCTION
+# ------------------------
 def update_symbol(sym):
-    # Yahoo NSE symbol handling
-    if not sym.endswith(".NS"):
-        yahoo_symbol = f"{sym}.NS"
-    else:
-        yahoo_symbol = sym
+    # Ensure Yahoo NSE symbol
+    yahoo_symbol = sym if sym.endswith(".NS") else f"{sym}.NS"
 
     file_path = os.path.join(DATA_DIR, f"{sym.replace('.', '_')}.csv")
 
@@ -23,42 +26,74 @@ def update_symbol(sym):
         print(f"❌ Missing file for {sym}, skipping")
         return
 
+    # ------------------------
+    # LOAD EXISTING CSV
+    # ------------------------
     df_old = pd.read_csv(file_path)
 
-    # ✅ Force datetime consistency
-    df_old["date"] = pd.to_datetime(df_old["date"], errors="coerce")
+    if "date" not in df_old.columns:
+        print(f"❌ {sym} CSV missing date column, skipping")
+        return
+
+    # Normalize old dates → date (not Timestamp)
+    df_old["date"] = pd.to_datetime(df_old["date"], errors="coerce").dt.date
     df_old.dropna(subset=["date"], inplace=True)
 
-    last_date = df_old["date"].max()
-    fetch_from = (last_date + timedelta(days=1)).strftime("%Y-%m-%d")
+    if df_old.empty:
+        start_date = "2000-01-01"
+    else:
+        start_date = (max(df_old["date"]) + timedelta(days=1)).strftime("%Y-%m-%d")
+
     today = datetime.utcnow().strftime("%Y-%m-%d")
 
-    if fetch_from >= today:
+    if start_date >= today:
         print(f"⏭️ {sym} already up-to-date")
         return
 
+    # ------------------------
+    # FETCH FROM YAHOO
+    # ------------------------
     try:
         df_new = yf.download(
             yahoo_symbol,
-            start=fetch_from,
+            start=start_date,
             end=today,
             interval="1d",
             auto_adjust=False,
             progress=False,
-            threads=False,   # IMPORTANT for GitHub Actions
+            threads=False,   # REQUIRED for GitHub Actions stability
         )
 
-        if df_new.empty:
+        if df_new is None or df_new.empty:
             print(f"⚠️ No new data for {sym}")
             return
 
         df_new.reset_index(inplace=True)
-        df_new.rename(columns=str.lower, inplace=True)
 
-        # Ensure date type
-        df_new["date"] = pd.to_datetime(df_new["date"], errors="coerce")
+        # ------------------------
+        # HARD DATE NORMALIZATION (CRITICAL)
+        # ------------------------
+        if "Date" in df_new.columns:
+            df_new.rename(columns={"Date": "date"}, inplace=True)
+        elif "Datetime" in df_new.columns:
+            df_new.rename(columns={"Datetime": "date"}, inplace=True)
+        else:
+            print(f"⚠️ {sym} no Date column returned, skipping")
+            return
+
+        df_new["date"] = pd.to_datetime(df_new["date"], errors="coerce").dt.date
         df_new.dropna(subset=["date"], inplace=True)
 
+        if df_new.empty:
+            print(f"⚠️ {sym} no valid rows after date normalization")
+            return
+
+        # Normalize column names
+        df_new.rename(columns=str.lower, inplace=True)
+
+        # ------------------------
+        # MERGE & SAVE
+        # ------------------------
         df_final = pd.concat([df_old, df_new], ignore_index=True)
         df_final.drop_duplicates(subset=["date"], inplace=True)
         df_final.sort_values("date", inplace=True)
@@ -69,6 +104,9 @@ def update_symbol(sym):
     except Exception as e:
         print(f"❌ Error {sym}: {e}")
 
+# ------------------------
+# RUN
+# ------------------------
 print(f"📦 Updating {len(symbols)} stocks")
 
 for sym in symbols:
