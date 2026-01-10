@@ -11,6 +11,12 @@ with open(CONFIG_PATH, "r") as f:
     symbols = json.load(f)
 
 def update_symbol(sym):
+    # Yahoo NSE symbol handling
+    if not sym.endswith(".NS"):
+        yahoo_symbol = f"{sym}.NS"
+    else:
+        yahoo_symbol = sym
+
     file_path = os.path.join(DATA_DIR, f"{sym.replace('.', '_')}.csv")
 
     if not os.path.exists(file_path):
@@ -18,7 +24,10 @@ def update_symbol(sym):
         return
 
     df_old = pd.read_csv(file_path)
-    df_old["date"] = pd.to_datetime(df_old["date"])
+
+    # ✅ Force datetime consistency
+    df_old["date"] = pd.to_datetime(df_old["date"], errors="coerce")
+    df_old.dropna(subset=["date"], inplace=True)
 
     last_date = df_old["date"].max()
     fetch_from = (last_date + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -30,11 +39,13 @@ def update_symbol(sym):
 
     try:
         df_new = yf.download(
-            sym,
+            yahoo_symbol,
             start=fetch_from,
             end=today,
+            interval="1d",
+            auto_adjust=False,
             progress=False,
-            auto_adjust=False
+            threads=False,   # IMPORTANT for GitHub Actions
         )
 
         if df_new.empty:
@@ -43,6 +54,10 @@ def update_symbol(sym):
 
         df_new.reset_index(inplace=True)
         df_new.rename(columns=str.lower, inplace=True)
+
+        # Ensure date type
+        df_new["date"] = pd.to_datetime(df_new["date"], errors="coerce")
+        df_new.dropna(subset=["date"], inplace=True)
 
         df_final = pd.concat([df_old, df_new], ignore_index=True)
         df_final.drop_duplicates(subset=["date"], inplace=True)
