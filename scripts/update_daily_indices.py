@@ -31,7 +31,7 @@ def update_index(name, yahoo_symbol):
     if df_old.empty or "date" not in df_old.columns:
         start_date = "2000-01-01"
     else:
-        df_old["date"] = pd.to_datetime(df_old["date"], errors="coerce")
+        df_old["date"] = pd.to_datetime(df_old["date"]).dt.normalize()
         start_date = df_old["date"].max().strftime("%Y-%m-%d")
 
     df_new = yf.download(
@@ -50,7 +50,7 @@ def update_index(name, yahoo_symbol):
     df_new.reset_index(inplace=True)
     df_new = df_new[["Date", "Open", "High", "Low", "Close", "Volume"]]
     df_new.columns = ["date", "open", "high", "low", "close", "volume"]
-    df_new["date"] = pd.to_datetime(df_new["date"]).dt.date
+    df_new["date"] = pd.to_datetime(df_new["date"]).dt.normalize()
 
     df = pd.concat([df_old, df_new], ignore_index=True)
     df.drop_duplicates(subset="date", inplace=True)
