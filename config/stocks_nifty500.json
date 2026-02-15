@@ -595,10 +595,6 @@
     "yahoo": "DRREDDY.NS",
     "sector": "Healthcare"
   },
-  "DUMMYHDLVR": {
-    "yahoo": "DUMMYHDLVR.NS",
-    "sector": "Fast Moving Consumer Goods"
-  },
   "EIDPARRY": {
     "yahoo": "EIDPARRY.NS",
     "sector": "Fast Moving Consumer Goods"
@@ -1170,6 +1166,10 @@
   "KIMS": {
     "yahoo": "KIMS.NS",
     "sector": "Healthcare"
+  },
+  "KWIL": {
+    "yahoo": "KWIL.NS",
+    "sector": "Fast Moving Consumer Goods"
   },
   "LTF": {
     "yahoo": "LTF.NS",
