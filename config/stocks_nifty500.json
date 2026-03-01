@@ -1167,10 +1167,6 @@
     "yahoo": "KIMS.NS",
     "sector": "Healthcare"
   },
-  "KWIL": {
-    "yahoo": "KWIL.NS",
-    "sector": "Fast Moving Consumer Goods"
-  },
   "LTF": {
     "yahoo": "LTF.NS",
     "sector": "Financial Services"
@@ -1187,8 +1183,8 @@
     "yahoo": "LTFOODS.NS",
     "sector": "Fast Moving Consumer Goods"
   },
-  "LTIM": {
-    "yahoo": "LTIM.NS",
+  "LTM": {
+    "yahoo": "LTM.NS",
     "sector": "Information Technology"
   },
   "LT": {
