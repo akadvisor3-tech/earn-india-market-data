@@ -55,6 +55,10 @@
     "yahoo": "ACE.NS",
     "sector": "Capital Goods"
   },
+  "ACUTAAS": {
+    "yahoo": "ACUTAAS.NS",
+    "sector": "Healthcare"
+  },
   "ADANIENSOL": {
     "yahoo": "ADANIENSOL.NS",
     "sector": "Power"
@@ -93,11 +97,15 @@
   },
   "ABREL": {
     "yahoo": "ABREL.NS",
-    "sector": "Forest Materials"
+    "sector": "Realty"
   },
   "ABSLAMC": {
     "yahoo": "ABSLAMC.NS",
     "sector": "Financial Services"
+  },
+  "CPPLUS": {
+    "yahoo": "CPPLUS.NS",
+    "sector": "Capital Goods"
   },
   "AEGISLOG": {
     "yahoo": "AEGISLOG.NS",
@@ -119,29 +127,17 @@
     "yahoo": "AJANTPHARM.NS",
     "sector": "Healthcare"
   },
-  "AKUMS": {
-    "yahoo": "AKUMS.NS",
-    "sector": "Healthcare"
-  },
   "AKZOINDIA": {
     "yahoo": "AKZOINDIA.NS",
     "sector": "Consumer Durables"
-  },
-  "APLLTD": {
-    "yahoo": "APLLTD.NS",
-    "sector": "Healthcare"
   },
   "ALKEM": {
     "yahoo": "ALKEM.NS",
     "sector": "Healthcare"
   },
-  "ALKYLAMINE": {
-    "yahoo": "ALKYLAMINE.NS",
-    "sector": "Chemicals"
-  },
-  "ALOKINDS": {
-    "yahoo": "ALOKINDS.NS",
-    "sector": "Textiles"
+  "ABDL": {
+    "yahoo": "ABDL.NS",
+    "sector": "Fast Moving Consumer Goods"
   },
   "ARE&M": {
     "yahoo": "ARE&M.NS",
@@ -166,6 +162,14 @@
   "ANGELONE": {
     "yahoo": "ANGELONE.NS",
     "sector": "Financial Services"
+  },
+  "ANTHEM": {
+    "yahoo": "ANTHEM.NS",
+    "sector": "Healthcare"
+  },
+  "ANURAS": {
+    "yahoo": "ANURAS.NS",
+    "sector": "Chemicals"
   },
   "APARINDS": {
     "yahoo": "APARINDS.NS",
@@ -199,10 +203,6 @@
     "yahoo": "ASTERDM.NS",
     "sector": "Healthcare"
   },
-  "ASTRAZEN": {
-    "yahoo": "ASTRAZEN.NS",
-    "sector": "Healthcare"
-  },
   "ASTRAL": {
     "yahoo": "ASTRAL.NS",
     "sector": "Capital Goods"
@@ -230,10 +230,6 @@
   "AXISBANK": {
     "yahoo": "AXISBANK.NS",
     "sector": "Financial Services"
-  },
-  "BASF": {
-    "yahoo": "BASF.NS",
-    "sector": "Chemicals"
   },
   "BEML": {
     "yahoo": "BEML.NS",
@@ -299,6 +295,10 @@
     "yahoo": "BAYERCROP.NS",
     "sector": "Chemicals"
   },
+  "BELRISE": {
+    "yahoo": "BELRISE.NS",
+    "sector": "Automobile and Auto Components"
+  },
   "BERGEPAINT": {
     "yahoo": "BERGEPAINT.NS",
     "sector": "Consumer Durables"
@@ -334,6 +334,10 @@
   "BIKAJI": {
     "yahoo": "BIKAJI.NS",
     "sector": "Fast Moving Consumer Goods"
+  },
+  "GROWW": {
+    "yahoo": "GROWW.NS",
+    "sector": "Financial Services"
   },
   "BIOCON": {
     "yahoo": "BIOCON.NS",
@@ -395,16 +399,16 @@
     "yahoo": "CRISIL.NS",
     "sector": "Financial Services"
   },
-  "CAMPUS": {
-    "yahoo": "CAMPUS.NS",
-    "sector": "Consumer Durables"
-  },
   "CANFINHOME": {
     "yahoo": "CANFINHOME.NS",
     "sector": "Financial Services"
   },
   "CANBK": {
     "yahoo": "CANBK.NS",
+    "sector": "Financial Services"
+  },
+  "CANHLIFE": {
+    "yahoo": "CANHLIFE.NS",
     "sector": "Financial Services"
   },
   "CAPLIPOINT": {
@@ -419,6 +423,10 @@
     "yahoo": "CARBORUNIV.NS",
     "sector": "Capital Goods"
   },
+  "CARTRADE": {
+    "yahoo": "CARTRADE.NS",
+    "sector": "Consumer Services"
+  },
   "CASTROLIND": {
     "yahoo": "CASTROLIND.NS",
     "sector": "Oil Gas & Consumable Fuels"
@@ -427,6 +435,10 @@
     "yahoo": "CEATLTD.NS",
     "sector": "Automobile and Auto Components"
   },
+  "CEMPRO": {
+    "yahoo": "CEMPRO.NS",
+    "sector": "Construction"
+  },
   "CENTRALBK": {
     "yahoo": "CENTRALBK.NS",
     "sector": "Financial Services"
@@ -434,14 +446,6 @@
   "CDSL": {
     "yahoo": "CDSL.NS",
     "sector": "Financial Services"
-  },
-  "CENTURYPLY": {
-    "yahoo": "CENTURYPLY.NS",
-    "sector": "Consumer Durables"
-  },
-  "CERA": {
-    "yahoo": "CERA.NS",
-    "sector": "Consumer Durables"
   },
   "CHALET": {
     "yahoo": "CHALET.NS",
@@ -583,10 +587,6 @@
     "yahoo": "DIXON.NS",
     "sector": "Consumer Durables"
   },
-  "AGARWALEYE": {
-    "yahoo": "AGARWALEYE.NS",
-    "sector": "Healthcare"
-  },
   "LALPATHLAB": {
     "yahoo": "LALPATHLAB.NS",
     "sector": "Healthcare"
@@ -622,6 +622,10 @@
   "EMCURE": {
     "yahoo": "EMCURE.NS",
     "sector": "Healthcare"
+  },
+  "EMMVEE": {
+    "yahoo": "EMMVEE.NS",
+    "sector": "Capital Goods"
   },
   "ENDURANCE": {
     "yahoo": "ENDURANCE.NS",
@@ -663,10 +667,6 @@
     "yahoo": "FINCABLES.NS",
     "sector": "Capital Goods"
   },
-  "FINPIPE": {
-    "yahoo": "FINPIPE.NS",
-    "sector": "Capital Goods"
-  },
   "FSL": {
     "yahoo": "FSL.NS",
     "sector": "Services"
@@ -694,6 +694,14 @@
   "GMRAIRPORT": {
     "yahoo": "GMRAIRPORT.NS",
     "sector": "Services"
+  },
+  "GABRIEL": {
+    "yahoo": "GABRIEL.NS",
+    "sector": "Automobile and Auto Components"
+  },
+  "GALLANTT": {
+    "yahoo": "GALLANTT.NS",
+    "sector": "Capital Goods"
   },
   "GRSE": {
     "yahoo": "GRSE.NS",
@@ -735,10 +743,6 @@
     "yahoo": "GODFRYPHLP.NS",
     "sector": "Fast Moving Consumer Goods"
   },
-  "GODREJAGRO": {
-    "yahoo": "GODREJAGRO.NS",
-    "sector": "Fast Moving Consumer Goods"
-  },
   "GODREJCP": {
     "yahoo": "GODREJCP.NS",
     "sector": "Fast Moving Consumer Goods"
@@ -775,10 +779,6 @@
     "yahoo": "FLUOROCHEM.NS",
     "sector": "Chemicals"
   },
-  "GUJGASLTD": {
-    "yahoo": "GUJGASLTD.NS",
-    "sector": "Oil Gas & Consumable Fuels"
-  },
   "GMDCLTD": {
     "yahoo": "GMDCLTD.NS",
     "sector": "Metals & Mining"
@@ -799,6 +799,10 @@
     "yahoo": "HCLTECH.NS",
     "sector": "Information Technology"
   },
+  "HDBFS": {
+    "yahoo": "HDBFS.NS",
+    "sector": "Financial Services"
+  },
   "HDFCAMC": {
     "yahoo": "HDFCAMC.NS",
     "sector": "Financial Services"
@@ -814,10 +818,6 @@
   "HFCL": {
     "yahoo": "HFCL.NS",
     "sector": "Telecommunication"
-  },
-  "HAPPSTMNDS": {
-    "yahoo": "HAPPSTMNDS.NS",
-    "sector": "Information Technology"
   },
   "HAVELLS": {
     "yahoo": "HAVELLS.NS",
@@ -891,6 +891,10 @@
     "yahoo": "ICICIGI.NS",
     "sector": "Financial Services"
   },
+  "ICICIAMC": {
+    "yahoo": "ICICIAMC.NS",
+    "sector": "Financial Services"
+  },
   "ICICIPRULI": {
     "yahoo": "ICICIPRULI.NS",
     "sector": "Financial Services"
@@ -910,10 +914,6 @@
   "IIFL": {
     "yahoo": "IIFL.NS",
     "sector": "Financial Services"
-  },
-  "INOXINDIA": {
-    "yahoo": "INOXINDIA.NS",
-    "sector": "Capital Goods"
   },
   "IRB": {
     "yahoo": "IRB.NS",
@@ -1059,6 +1059,10 @@
     "yahoo": "JSWSTEEL.NS",
     "sector": "Metals & Mining"
   },
+  "JAINREC": {
+    "yahoo": "JAINREC.NS",
+    "sector": "Metals & Mining"
+  },
   "JPPOWER": {
     "yahoo": "JPPOWER.NS",
     "sector": "Power"
@@ -1099,10 +1103,6 @@
     "yahoo": "JWL.NS",
     "sector": "Capital Goods"
   },
-  "JYOTHYLAB": {
-    "yahoo": "JYOTHYLAB.NS",
-    "sector": "Fast Moving Consumer Goods"
-  },
   "JYOTICNC": {
     "yahoo": "JYOTICNC.NS",
     "sector": "Capital Goods"
@@ -1118,10 +1118,6 @@
   "KPITTECH": {
     "yahoo": "KPITTECH.NS",
     "sector": "Information Technology"
-  },
-  "KSB": {
-    "yahoo": "KSB.NS",
-    "sector": "Capital Goods"
   },
   "KAJARIACER": {
     "yahoo": "KAJARIACER.NS",
@@ -1151,10 +1147,6 @@
     "yahoo": "KFINTECH.NS",
     "sector": "Financial Services"
   },
-  "KIRLOSBROS": {
-    "yahoo": "KIRLOSBROS.NS",
-    "sector": "Capital Goods"
-  },
   "KIRLOSENG": {
     "yahoo": "KIRLOSENG.NS",
     "sector": "Capital Goods"
@@ -1174,6 +1166,10 @@
   "LTTS": {
     "yahoo": "LTTS.NS",
     "sector": "Information Technology"
+  },
+  "LGEINDIA": {
+    "yahoo": "LGEINDIA.NS",
+    "sector": "Consumer Durables"
   },
   "LICHSGFIN": {
     "yahoo": "LICHSGFIN.NS",
@@ -1207,6 +1203,10 @@
     "yahoo": "LEMONTREE.NS",
     "sector": "Consumer Services"
   },
+  "LENSKART": {
+    "yahoo": "LENSKART.NS",
+    "sector": "Consumer Services"
+  },
   "LICI": {
     "yahoo": "LICI.NS",
     "sector": "Financial Services"
@@ -1238,14 +1238,6 @@
   "MGL": {
     "yahoo": "MGL.NS",
     "sector": "Oil Gas & Consumable Fuels"
-  },
-  "MAHSCOOTER": {
-    "yahoo": "MAHSCOOTER.NS",
-    "sector": "Financial Services"
-  },
-  "MAHSEAMLES": {
-    "yahoo": "MAHSEAMLES.NS",
-    "sector": "Capital Goods"
   },
   "M&MFIN": {
     "yahoo": "M&MFIN.NS",
@@ -1287,9 +1279,9 @@
     "yahoo": "MAZDOCK.NS",
     "sector": "Capital Goods"
   },
-  "METROPOLIS": {
-    "yahoo": "METROPOLIS.NS",
-    "sector": "Healthcare"
+  "MEESHO": {
+    "yahoo": "MEESHO.NS",
+    "sector": "Consumer Services"
   },
   "MINDACORP": {
     "yahoo": "MINDACORP.NS",
@@ -1463,6 +1455,10 @@
     "yahoo": "PAGEIND.NS",
     "sector": "Textiles"
   },
+  "PARADEEP": {
+    "yahoo": "PARADEEP.NS",
+    "sector": "Chemicals"
+  },
   "PATANJALI": {
     "yahoo": "PATANJALI.NS",
     "sector": "Fast Moving Consumer Goods"
@@ -1483,9 +1479,21 @@
     "yahoo": "PHOENIXLTD.NS",
     "sector": "Realty"
   },
+  "PWL": {
+    "yahoo": "PWL.NS",
+    "sector": "Consumer Services"
+  },
   "PIDILITIND": {
     "yahoo": "PIDILITIND.NS",
     "sector": "Chemicals"
+  },
+  "PINELABS": {
+    "yahoo": "PINELABS.NS",
+    "sector": "Financial Services"
+  },
+  "PIRAMALFIN": {
+    "yahoo": "PIRAMALFIN.NS",
+    "sector": "Financial Services"
   },
   "PPLPHARMA": {
     "yahoo": "PPLPHARMA.NS",
@@ -1511,10 +1519,6 @@
     "yahoo": "POWERGRID.NS",
     "sector": "Power"
   },
-  "PRAJIND": {
-    "yahoo": "PRAJIND.NS",
-    "sector": "Capital Goods"
-  },
   "PREMIERENE": {
     "yahoo": "PREMIERENE.NS",
     "sector": "Capital Goods"
@@ -1522,10 +1526,6 @@
   "PRESTIGE": {
     "yahoo": "PRESTIGE.NS",
     "sector": "Realty"
-  },
-  "PGHH": {
-    "yahoo": "PGHH.NS",
-    "sector": "Fast Moving Consumer Goods"
   },
   "PNB": {
     "yahoo": "PNB.NS",
@@ -1571,10 +1571,6 @@
     "yahoo": "RKFORGE.NS",
     "sector": "Automobile and Auto Components"
   },
-  "RCF": {
-    "yahoo": "RCF.NS",
-    "sector": "Chemicals"
-  },
   "REDINGTON": {
     "yahoo": "REDINGTON.NS",
     "sector": "Services"
@@ -1582,10 +1578,6 @@
   "RELIANCE": {
     "yahoo": "RELIANCE.NS",
     "sector": "Oil Gas & Consumable Fuels"
-  },
-  "RELINFRA": {
-    "yahoo": "RELINFRA.NS",
-    "sector": "Power"
   },
   "RPOWER": {
     "yahoo": "RPOWER.NS",
@@ -1719,13 +1711,13 @@
     "yahoo": "SUNDARMFIN.NS",
     "sector": "Financial Services"
   },
-  "SUNDRMFAST": {
-    "yahoo": "SUNDRMFAST.NS",
-    "sector": "Automobile and Auto Components"
-  },
   "SUPREMEIND": {
     "yahoo": "SUPREMEIND.NS",
     "sector": "Capital Goods"
+  },
+  "SPLPETRO": {
+    "yahoo": "SPLPETRO.NS",
+    "sector": "Chemicals"
   },
   "SUZLON": {
     "yahoo": "SUZLON.NS",
@@ -1755,6 +1747,10 @@
     "yahoo": "TVSMOTOR.NS",
     "sector": "Automobile and Auto Components"
   },
+  "TATACAP": {
+    "yahoo": "TATACAP.NS",
+    "sector": "Financial Services"
+  },
   "TATACHEM": {
     "yahoo": "TATACHEM.NS",
     "sector": "Chemicals"
@@ -1778,6 +1774,10 @@
   "TATAINVEST": {
     "yahoo": "TATAINVEST.NS",
     "sector": "Financial Services"
+  },
+  "TMCV": {
+    "yahoo": "TMCV.NS",
+    "sector": "Capital Goods"
   },
   "TMPV": {
     "yahoo": "TMPV.NS",
@@ -1807,9 +1807,17 @@
     "yahoo": "TECHNOE.NS",
     "sector": "Construction"
   },
+  "TEGA": {
+    "yahoo": "TEGA.NS",
+    "sector": "Capital Goods"
+  },
   "TEJASNET": {
     "yahoo": "TEJASNET.NS",
     "sector": "Telecommunication"
+  },
+  "TENNIND": {
+    "yahoo": "TENNIND.NS",
+    "sector": "Automobile and Auto Components"
   },
   "NIACL": {
     "yahoo": "NIACL.NS",
@@ -1847,6 +1855,10 @@
     "yahoo": "TARIL.NS",
     "sector": "Capital Goods"
   },
+  "TRAVELFOOD": {
+    "yahoo": "TRAVELFOOD.NS",
+    "sector": "Consumer Services"
+  },
   "TRENT": {
     "yahoo": "TRENT.NS",
     "sector": "Consumer Services"
@@ -1854,10 +1866,6 @@
   "TRIDENT": {
     "yahoo": "TRIDENT.NS",
     "sector": "Textiles"
-  },
-  "TRIVENI": {
-    "yahoo": "TRIVENI.NS",
-    "sector": "Fast Moving Consumer Goods"
   },
   "TRITURBINE": {
     "yahoo": "TRITURBINE.NS",
@@ -1899,17 +1907,13 @@
     "yahoo": "UNITDSPR.NS",
     "sector": "Fast Moving Consumer Goods"
   },
+  "URBANCO": {
+    "yahoo": "URBANCO.NS",
+    "sector": "Consumer Services"
+  },
   "USHAMART": {
     "yahoo": "USHAMART.NS",
     "sector": "Capital Goods"
-  },
-  "VGUARD": {
-    "yahoo": "VGUARD.NS",
-    "sector": "Consumer Durables"
-  },
-  "DBREALTY": {
-    "yahoo": "DBREALTY.NS",
-    "sector": "Consumer Services"
   },
   "VTL": {
     "yahoo": "VTL.NS",
@@ -1919,17 +1923,9 @@
     "yahoo": "VBL.NS",
     "sector": "Fast Moving Consumer Goods"
   },
-  "MANYAVAR": {
-    "yahoo": "MANYAVAR.NS",
-    "sector": "Consumer Services"
-  },
   "VEDL": {
     "yahoo": "VEDL.NS",
     "sector": "Metals & Mining"
-  },
-  "VENTIVE": {
-    "yahoo": "VENTIVE.NS",
-    "sector": "Consumer Services"
   },
   "VIJAYA": {
     "yahoo": "VIJAYA.NS",
@@ -1994,6 +1990,10 @@
   "ZYDUSLIFE": {
     "yahoo": "ZYDUSLIFE.NS",
     "sector": "Healthcare"
+  },
+  "ZYDUSWELL": {
+    "yahoo": "ZYDUSWELL.NS",
+    "sector": "Fast Moving Consumer Goods"
   },
   "ECLERX": {
     "yahoo": "ECLERX.NS",
