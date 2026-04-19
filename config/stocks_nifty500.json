@@ -127,10 +127,6 @@
     "yahoo": "AJANTPHARM.NS",
     "sector": "Healthcare"
   },
-  "AKZOINDIA": {
-    "yahoo": "AKZOINDIA.NS",
-    "sector": "Consumer Durables"
-  },
   "ALKEM": {
     "yahoo": "ALKEM.NS",
     "sector": "Healthcare"
@@ -1046,6 +1042,10 @@
   "JSWCEMENT": {
     "yahoo": "JSWCEMENT.NS",
     "sector": "Construction Materials"
+  },
+  "JSWDULUX": {
+    "yahoo": "JSWDULUX.NS",
+    "sector": "Consumer Durables"
   },
   "JSWENERGY": {
     "yahoo": "JSWENERGY.NS",
