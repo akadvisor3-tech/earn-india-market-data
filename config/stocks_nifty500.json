@@ -391,6 +391,10 @@
     "yahoo": "CGPOWER.NS",
     "sector": "Capital Goods"
   },
+  "CIEINDIA": {
+    "yahoo": "CIEINDIA.NS",
+    "sector": "Automobile and Auto Components"
+  },
   "CRISIL": {
     "yahoo": "CRISIL.NS",
     "sector": "Financial Services"
@@ -794,10 +798,6 @@
   "GMDCLTD": {
     "yahoo": "GMDCLTD.NS",
     "sector": "Metals & Mining"
-  },
-  "GSPL": {
-    "yahoo": "GSPL.NS",
-    "sector": "Oil Gas & Consumable Fuels"
   },
   "HEG": {
     "yahoo": "HEG.NS",
