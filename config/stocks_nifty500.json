@@ -595,22 +595,6 @@
     "yahoo": "DRREDDY.NS",
     "sector": "Healthcare"
   },
-  "DUMMYVEDL1": {
-    "yahoo": "DUMMYVEDL1.NS",
-    "sector": "Metals & Mining"
-  },
-  "DUMMYVEDL2": {
-    "yahoo": "DUMMYVEDL2.NS",
-    "sector": "Power"
-  },
-  "DUMMYVEDL3": {
-    "yahoo": "DUMMYVEDL3.NS",
-    "sector": "Oil Gas & Consumable Fuels"
-  },
-  "DUMMYVEDL4": {
-    "yahoo": "DUMMYVEDL4.NS",
-    "sector": "Metals & Mining"
-  },
   "EIDPARRY": {
     "yahoo": "EIDPARRY.NS",
     "sector": "Fast Moving Consumer Goods"
@@ -1939,9 +1923,25 @@
     "yahoo": "VBL.NS",
     "sector": "Fast Moving Consumer Goods"
   },
+  "VAML": {
+    "yahoo": "VAML.NS",
+    "sector": "Metals & Mining"
+  },
+  "VISL": {
+    "yahoo": "VISL.NS",
+    "sector": "Metals & Mining"
+  },
   "VEDL": {
     "yahoo": "VEDL.NS",
     "sector": "Metals & Mining"
+  },
+  "VOGL": {
+    "yahoo": "VOGL.NS",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  "VEDPOWER": {
+    "yahoo": "VEDPOWER.NS",
+    "sector": "Power"
   },
   "VIJAYA": {
     "yahoo": "VIJAYA.NS",
