@@ -1927,10 +1927,6 @@
     "yahoo": "VAML.NS",
     "sector": "Metals & Mining"
   },
-  "VISL": {
-    "yahoo": "VISL.NS",
-    "sector": "Metals & Mining"
-  },
   "VEDL": {
     "yahoo": "VEDL.NS",
     "sector": "Metals & Mining"
@@ -1938,10 +1934,6 @@
   "VOGL": {
     "yahoo": "VOGL.NS",
     "sector": "Oil Gas & Consumable Fuels"
-  },
-  "VEDPOWER": {
-    "yahoo": "VEDPOWER.NS",
-    "sector": "Power"
   },
   "VIJAYA": {
     "yahoo": "VIJAYA.NS",
