@@ -1923,17 +1923,9 @@
     "yahoo": "VBL.NS",
     "sector": "Fast Moving Consumer Goods"
   },
-  "VAML": {
-    "yahoo": "VAML.NS",
-    "sector": "Metals & Mining"
-  },
   "VEDL": {
     "yahoo": "VEDL.NS",
     "sector": "Metals & Mining"
-  },
-  "VOGL": {
-    "yahoo": "VOGL.NS",
-    "sector": "Oil Gas & Consumable Fuels"
   },
   "VIJAYA": {
     "yahoo": "VIJAYA.NS",
