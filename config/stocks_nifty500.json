@@ -1019,10 +1019,6 @@
     "yahoo": "IPCALAB.NS",
     "sector": "Healthcare"
   },
-  "JBCHEPHARM": {
-    "yahoo": "JBCHEPHARM.NS",
-    "sector": "Healthcare"
-  },
   "JKCEMENT": {
     "yahoo": "JKCEMENT.NS",
     "sector": "Construction Materials"
@@ -1526,6 +1522,10 @@
   "PRESTIGE": {
     "yahoo": "PRESTIGE.NS",
     "sector": "Realty"
+  },
+  "PFOCUS": {
+    "yahoo": "PFOCUS.NS",
+    "sector": "Media Entertainment & Publication"
   },
   "PNB": {
     "yahoo": "PNB.NS",
