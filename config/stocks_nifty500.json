@@ -595,6 +595,10 @@
     "yahoo": "DRREDDY.NS",
     "sector": "Healthcare"
   },
+  "DUMMYHEG": {
+    "yahoo": "DUMMYHEG.NS",
+    "sector": "Metals & Mining"
+  },
   "EIDPARRY": {
     "yahoo": "EIDPARRY.NS",
     "sector": "Fast Moving Consumer Goods"
