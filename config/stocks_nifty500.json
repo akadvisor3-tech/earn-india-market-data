@@ -787,10 +787,6 @@
     "yahoo": "GMDCLTD.NS",
     "sector": "Metals & Mining"
   },
-  "HEG": {
-    "yahoo": "HEG.NS",
-    "sector": "Capital Goods"
-  },
   "HBLENGINE": {
     "yahoo": "HBLENGINE.NS",
     "sector": "Capital Goods"
@@ -814,6 +810,10 @@
   "HDFCLIFE": {
     "yahoo": "HDFCLIFE.NS",
     "sector": "Financial Services"
+  },
+  "HEG": {
+    "yahoo": "HEG.NS",
+    "sector": "Capital Goods"
   },
   "HFCL": {
     "yahoo": "HFCL.NS",
