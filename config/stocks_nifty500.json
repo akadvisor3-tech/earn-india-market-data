@@ -883,16 +883,16 @@
     "yahoo": "ICICIBANK.NS",
     "sector": "Financial Services"
   },
+  "ICICILIFE": {
+    "yahoo": "ICICILIFE.NS",
+    "sector": "Financial Services"
+  },
   "ICICIGI": {
     "yahoo": "ICICIGI.NS",
     "sector": "Financial Services"
   },
   "ICICIAMC": {
     "yahoo": "ICICIAMC.NS",
-    "sector": "Financial Services"
-  },
-  "ICICIPRULI": {
-    "yahoo": "ICICIPRULI.NS",
     "sector": "Financial Services"
   },
   "IDBI": {
